@@ -7,6 +7,7 @@ package com.alejandro.views;
 
 import com.alejandro.DAO.PersonaDao;
 import com.alejandro.dominio.Persona;
+import com.alejandro.dominio.Usuario;
 
 import com.alejandro.ucc.Operacion;
 import javax.swing.JOptionPane;
@@ -26,14 +27,12 @@ public class PersonaView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        
-        
+        this.setVisible(false);
+
         if (person != null) {
             persona = person;
             cargarPersona();
 
-            setLocationRelativeTo(this);
         }
     }
 
@@ -208,11 +207,14 @@ public class PersonaView extends javax.swing.JDialog {
                 persona.setTelefono(txttelefono.getText());
                 persona.setCelular(txtcelular.getText());
                 boolean estado = personadao.editarPersona(persona);
-                if (estado == true) {
-                    JOptionPane.showMessageDialog(null, "Se edito correctamente");
-                    dispose();
+                int editar = JOptionPane.showConfirmDialog(this, "Desea guardar los cambios?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (editar == JOptionPane.YES_OPTION) {
+                    if (estado == true) {
+                        JOptionPane.showMessageDialog(null, "Se edito correctamente");
+                        dispose();
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al editar Persona");
+                    dispose();
                 }
             } else {
 
@@ -225,15 +227,18 @@ public class PersonaView extends javax.swing.JDialog {
                 person.setCelular(txtcelular.getText());
 
                 boolean estado = personadao.savePersona(person);
-                if (estado == true) {
-                    JOptionPane.showMessageDialog(null, "Se guardo correctamente");
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al guardar Persona");
+                int guardar = JOptionPane.showConfirmDialog(this, "Deseas guardar a la nueva persona?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (guardar == JOptionPane.YES_OPTION) {
+                    if (estado == true) {
+                        JOptionPane.showMessageDialog(null, "Se guardo correctamente");
+                        dispose();
+                    } else {
+                        dispose();
+                    }
                 }
             }
-
         }
+
 
     }//GEN-LAST:event_btnguardarActionPerformed
 

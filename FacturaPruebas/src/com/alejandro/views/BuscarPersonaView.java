@@ -25,7 +25,7 @@ public class BuscarPersonaView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setVisible(false);
         
 
     }
@@ -54,6 +54,11 @@ public class BuscarPersonaView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("BUSCAR:");
 
+        txtbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscarActionPerformed(evt);
+            }
+        });
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyReleased(evt);
@@ -181,6 +186,10 @@ public class BuscarPersonaView extends javax.swing.JDialog {
         pv.setVisible(true);
         
     }//GEN-LAST:event_nuevoususarioActionPerformed
+
+    private void txtbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

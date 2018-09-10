@@ -5,6 +5,7 @@
  */
 package com.alejandro.DAO;
 
+import com.alejandro.dominio.Persona;
 import com.alejandro.dominio.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,7 +40,7 @@ public class UsuarioDao {
         Connection con = conectar();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
-            //guarda o actualiza en la base de datos
+            //guarda o actualiza en la base de datos 
             int n = pst.executeUpdate();
             //cierra la conexion a la bdd despues de la consulta
             if (con != null) {
@@ -55,6 +56,30 @@ public class UsuarioDao {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public boolean eliminarUsuario(Usuario usuario) {
+        String sql = "delete from usuario where  idUsuario=" + usuario.getIdUsuario();
+        Connection con = conectar();
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            //guarda o actualiza en la base de datos
+            int n = pst.executeUpdate();
+            //cierra la conexion a la bdd despues de la consulta
+            if (con != null) {
+                con.close();
+            }
+
+            //0 no se guardo 1 si
+            if (n == 0) {
+                return false;
+            } else {
+
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -75,6 +100,7 @@ public class UsuarioDao {
                 usuario.setNombreUsuario(rs.getString("nombreUsuario"));
                 usuario.setPassword(rs.getString("contraseña"));
                 usuario.setRol(rs.getString("rol"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
 
                 usuarios.add(usuario);
 

@@ -6,6 +6,7 @@
 package com.alejandro.views;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
     }
 
     /**
@@ -135,8 +136,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        int cerrar = JOptionPane.showConfirmDialog(this, "Desea cerrar nuestra aplicacion", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (cerrar == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
+        dispose();
 
-        System.exit(0);
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -37,8 +37,8 @@ public class PersonaDao {
     }
 
     public boolean editarPersona(Persona persona) {
-        String sql = "update persona set nombre='" + persona.getNombre() + "',cedula='" + persona.getCedula() + "',direccion='" + persona.getDireccion() + "',telefono='" + persona.getTelefono() + "',celular='" + persona.getCelular() +
-        "' where idPersona="+persona.getIdPersona();
+        String sql = "update persona set nombre='" + persona.getNombre() + "',cedula='" + persona.getCedula() + "',direccion='" + persona.getDireccion() + "',telefono='" + persona.getTelefono() + "',celular='" + persona.getCelular()
+                + "' where idPersona=" + persona.getIdPersona();
         Connection con = conectar();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -154,7 +154,39 @@ public class PersonaDao {
         }
         return 0;
     }
+
+    public Persona getPersonaporId(int idPersona) {
+        String sql = "Select * from Persona where idPersona= " + idPersona + "";
+        Connection con = conectar();
+        try {
+            //preparando la sentencia para ser ejecutada
+            PreparedStatement pst = con.prepareStatement(sql);
+            //obtener los datos q estan en la variable rs
+            ResultSet rs = pst.executeQuery();
+            //para recoorere toda la consulta contenida en rs
+            Persona persona = new Persona();
+            while (rs.next()) {
+
+                persona.setIdPersona(rs.getInt("idPersona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setCedula(rs.getString("cedula"));
+                persona.setDireccion(rs.getString("direccion"));
+                persona.setTelefono(rs.getString("telefono"));
+                persona.setCelular(rs.getString("celular"));
+
+            }
+
+            //cierra la conexion a la bdd despues de la consulta
+            if (con != null) {
+                con.close();
+            }
+            return persona;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
-
-
 
