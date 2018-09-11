@@ -140,8 +140,7 @@ public class Principal extends javax.swing.JFrame {
         if (cerrar == JOptionPane.YES_OPTION) {
             System.exit(0);
         } else {
-        dispose();
-
+            
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 

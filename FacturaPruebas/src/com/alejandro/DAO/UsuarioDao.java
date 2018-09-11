@@ -8,7 +8,6 @@ package com.alejandro.DAO;
 import com.alejandro.dominio.Persona;
 import com.alejandro.dominio.Usuario;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,21 +22,10 @@ import java.util.logging.Logger;
  */
 public class UsuarioDao {
 
-    public Connection conectar() {
-        try {
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/facturadb", "root", "alejodaniel12345");
-            return connect;
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-
-    }
-
     public boolean editarUsuario(Usuario usuario) {
-        String sql = "update usuario set nombreUsuario='" + usuario.getNombreUsuario() + "',contraseña='" + usuario.getPassword() + "',rol='" + usuario.getRol()
-                + "' where idPersona=" + usuario.getIdUsuario();
-        Connection con = conectar();
+        String sql = "update usuario set nombreUsuario= '" + usuario.getNombreUsuario() + "',password= '" + usuario.getPassword() + "',rol='" + usuario.getRol()
+                + "' where idPersona= " + usuario.getIdPersona();
+        Connection con = ConexionDao.conectar();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
             //guarda o actualiza en la base de datos 
@@ -55,13 +43,15 @@ public class UsuarioDao {
                 return true;
             }
         } catch (SQLException ex) {
+//            System.out.println("kiu " + ex);
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
+
     public boolean eliminarUsuario(Usuario usuario) {
         String sql = "delete from usuario where  idUsuario=" + usuario.getIdUsuario();
-        Connection con = conectar();
+        Connection con = ConexionDao.conectar();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
             //guarda o actualiza en la base de datos
@@ -86,7 +76,7 @@ public class UsuarioDao {
 
     public List<Usuario> getUsuarios(String criterio) {
         String sql = "Select * from usuario where nombreUsuario like '%" + criterio + "%'";
-        Connection con = conectar();
+        Connection con = ConexionDao.conectar();
         try {
             //preparando la sentencia para ser ejecutada
             PreparedStatement pst = con.prepareStatement(sql);
@@ -98,7 +88,7 @@ public class UsuarioDao {
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setNombreUsuario(rs.getString("nombreUsuario"));
-                usuario.setPassword(rs.getString("contraseña"));
+                usuario.setPassword(rs.getString("password"));
                 usuario.setRol(rs.getString("rol"));
                 usuario.setIdPersona(rs.getInt("idPersona"));
 
@@ -122,7 +112,7 @@ public class UsuarioDao {
         String sql = "insert into usuario values (?,?,?,?,?)";
 //        System.out.println("Persona: "+persona.toString());
 //        String sql1 = "insert into persona values ("+persona.getIdPersona()+",'"+persona.getNombre()+"'....)";
-        Connection connect = conectar();
+        Connection connect = ConexionDao.conectar();
         try {
             PreparedStatement pst = connect.prepareStatement(sql);
             pst.setInt(1, usuario.getIdUsuario());
@@ -154,7 +144,7 @@ public class UsuarioDao {
 
     public int getSiguienteIdUsuario() {
         String sql = "select * from usuario where idUsuario=(select max(idUsuario) from usuario)";
-        Connection connect = conectar();
+        Connection connect = ConexionDao.conectar();
         try {
             PreparedStatement pst = connect.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -175,5 +165,4 @@ public class UsuarioDao {
         }
         return 0;
     }
-
 }

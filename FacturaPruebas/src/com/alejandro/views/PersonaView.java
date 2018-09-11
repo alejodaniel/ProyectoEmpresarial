@@ -7,8 +7,6 @@ package com.alejandro.views;
 
 import com.alejandro.DAO.PersonaDao;
 import com.alejandro.dominio.Persona;
-import com.alejandro.dominio.Usuario;
-
 import com.alejandro.ucc.Operacion;
 import javax.swing.JOptionPane;
 
