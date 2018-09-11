@@ -6,14 +6,10 @@
 package com.alejandro.views;
 
 import com.alejandro.DAO.PersonaDao;
-import com.alejandro.DAO.UsuarioDao;
 import com.alejandro.dominio.Persona;
-import com.alejandro.dominio.Usuario;
 import com.alejandro.table.PersonaTable;
-import com.alejandro.table.UsuarioTable;
 import java.awt.Frame;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -164,11 +160,16 @@ public class BuscarPersonaView extends javax.swing.JDialog {
     }//GEN-LAST:event_txtbuscarKeyReleased
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        try {
         PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
         //elegir cual esta seleccionado en la tabla
         Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
         PersonaView pv = new PersonaView((Frame) this.getParent(), true, persona);
         pv.setVisible(true);
+        txtbuscarKeyReleased(null);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione a la persona que desee editar");
+        }
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
@@ -176,6 +177,7 @@ public class BuscarPersonaView extends javax.swing.JDialog {
     }//GEN-LAST:event_btncerrarActionPerformed
 
     private void nuevoususarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoususarioActionPerformed
+       try{ 
         PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
 
         Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
@@ -193,7 +195,10 @@ public class BuscarPersonaView extends javax.swing.JDialog {
             pv.setVisible(true);
 
         }
-
+        txtbuscarKeyReleased(null);
+       } catch (Exception e){
+          JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y selecciona a la persona que quiera crear un nuevo usuario");
+       }
 
     }//GEN-LAST:event_nuevoususarioActionPerformed
 

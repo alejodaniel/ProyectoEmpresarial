@@ -149,17 +149,20 @@ public class BuscarUsuarioView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
-dispose();
+        dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-
+try{
         UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
         //elegir cual esta seleccionado en la tabla
         Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
         UsuarioView uv = new UsuarioView((Frame) this.getParent(), true, usuario, null);
         uv.setVisible(true);
-
+        txtbuscarusuarioKeyReleased(null);
+}catch (Exception e){
+    JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione");
+}
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void txtbuscarusuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarusuarioKeyReleased
@@ -175,15 +178,15 @@ dispose();
     }//GEN-LAST:event_txtbuscarusuarioActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        //elegir cual esta seleccionado en la tabla
 
+        //elegir cual esta seleccionado en la tabla
         //en esta funcion en la 1 linea seleccionamos la tabla ususarios que es la que nos permite ver los datos de los 
         //usuarios y poder seleccionar 
         //en la linea de codigo dos creamos el objeto usuariodao es donde esta nuestra funcion de eliminar 
         //en la sentencia if ponemos la variable y a la vez traemos de usuario dao la funcion de eliminar y 
         //ponemos la variable del objeto q en este caso es usuario nos pregunta si a sido eliminado o no 
+       try {
         UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
-
         Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
         UsuarioDao usuariodao = new UsuarioDao();
         int valor = JOptionPane.showConfirmDialog(this, "Desea Eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
@@ -196,7 +199,9 @@ dispose();
             }
 
         }
-        txtbuscarusuarioKeyReleased(null);
+       }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione");
+    }
 
     }//GEN-LAST:event_btneliminarActionPerformed
 
