@@ -61,7 +61,7 @@ public class PersonaView extends javax.swing.JDialog {
         txtcelular = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("PERSONA");
+        setTitle("NUEVA PERSONA");
 
         jPanel1.setToolTipText("");
 

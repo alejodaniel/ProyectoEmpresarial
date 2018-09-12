@@ -6,9 +6,6 @@
 package com.alejandro.DAO;
 
 import com.alejandro.dominio.Persona;
-import com.alejandro.dominio.Usuario;
-//import com.alejandro.dominio.Usuario;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

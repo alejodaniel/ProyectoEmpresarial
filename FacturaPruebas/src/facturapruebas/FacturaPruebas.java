@@ -5,8 +5,8 @@
  */
 package facturapruebas;
 
-//import com.alejandro.views.PersonaView;
 import com.alejandro.views.Principal;
+
 
 /**
  *
@@ -14,11 +14,14 @@ import com.alejandro.views.Principal;
  */
 public class FacturaPruebas {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Principal p = new Principal();
+    public static void main(String[] args){
+////        try {
+////        UIManager.setLookAndFeel(new SyntheticaGreenDreamLookAndFeel());
+////        }catch (Exception e){
+////            JOptionPane.showMessageDialog(null,"Error");
+////            
+////        }
+       Principal p = new Principal();
         p.setVisible(true);
     }
 

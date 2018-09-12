@@ -67,6 +67,11 @@ public class BuscarPersonaView extends javax.swing.JDialog {
 
             }
         ));
+        tablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPersonasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaPersonas);
 
         btncerrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -161,14 +166,14 @@ public class BuscarPersonaView extends javax.swing.JDialog {
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         try {
-        PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
-        //elegir cual esta seleccionado en la tabla
-        Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
-        PersonaView pv = new PersonaView((Frame) this.getParent(), true, persona);
-        pv.setVisible(true);
-        txtbuscarKeyReleased(null);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione a la persona que desee editar");
+            PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
+            //elegir cual esta seleccionado en la tabla
+            Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
+            PersonaView pv = new PersonaView((Frame) this.getParent(), true, persona);
+            pv.setVisible(true);
+            txtbuscarKeyReleased(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Escriba en la opcion buscar y seleccione a la persona que desee editar");
         }
     }//GEN-LAST:event_btneditarActionPerformed
 
@@ -177,34 +182,45 @@ public class BuscarPersonaView extends javax.swing.JDialog {
     }//GEN-LAST:event_btncerrarActionPerformed
 
     private void nuevoususarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoususarioActionPerformed
-       try{ 
-        PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
+        try {
+            PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
 
-        Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
-        PersonaDao personadao = new PersonaDao();
-        if (personadao.buscarUsuario(persona)) {
-            int buscar = JOptionPane.showConfirmDialog(this, "Ya esta creado un usuario..Deseas Agregar uno nuevo?", "Advertencia", JOptionPane.YES_NO_OPTION);
-            if (buscar == JOptionPane.YES_OPTION) {
+            Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
+            PersonaDao personadao = new PersonaDao();
+            if (personadao.buscarUsuario(persona)) {
+                int buscar = JOptionPane.showConfirmDialog(this, "Ya esta creado un usuario..Deseas Agregar uno nuevo?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (buscar == JOptionPane.YES_OPTION) {
+                    UsuarioView pv = new UsuarioView((Frame) this.getParent(), true, null, persona);
+                    pv.setVisible(true);
+                } else {
+
+                }
+            } else {
                 UsuarioView pv = new UsuarioView((Frame) this.getParent(), true, null, persona);
                 pv.setVisible(true);
-            } else {
 
             }
-        } else {
-            UsuarioView pv = new UsuarioView((Frame) this.getParent(), true, null, persona);
-            pv.setVisible(true);
-
+            txtbuscarKeyReleased(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Escriba en la opcion buscar y selecciona a la persona que quiera crear un nuevo usuario");
         }
-        txtbuscarKeyReleased(null);
-       } catch (Exception e){
-          JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y selecciona a la persona que quiera crear un nuevo usuario");
-       }
 
     }//GEN-LAST:event_nuevoususarioActionPerformed
 
     private void txtbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtbuscarActionPerformed
+
+    private void tablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPersonasMouseClicked
+        if (evt.getClickCount() == 2) {
+            PersonaTable personatable = (PersonaTable) tablaPersonas.getModel();
+            //elegir cual esta seleccionado en la tabla
+            Persona persona = personatable.getFilas().get(tablaPersonas.getSelectedRow());
+            PersonaView pv = new PersonaView((Frame) this.getParent(), true, persona);
+            pv.setVisible(true);
+            txtbuscarKeyReleased(null);
+        }
+    }//GEN-LAST:event_tablaPersonasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

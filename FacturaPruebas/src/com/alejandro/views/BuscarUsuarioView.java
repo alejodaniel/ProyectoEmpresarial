@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Alejandro
@@ -69,6 +70,11 @@ public class BuscarUsuarioView extends javax.swing.JDialog {
 
             }
         ));
+        tablausuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablausuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablausuarios);
 
         btncerrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -153,16 +159,16 @@ public class BuscarUsuarioView extends javax.swing.JDialog {
     }//GEN-LAST:event_btncerrarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-try{
-        UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
-        //elegir cual esta seleccionado en la tabla
-        Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
-        UsuarioView uv = new UsuarioView((Frame) this.getParent(), true, usuario, null);
-        uv.setVisible(true);
-        txtbuscarusuarioKeyReleased(null);
-}catch (Exception e){
-    JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione");
-}
+        try {
+            UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
+            //elegir cual esta seleccionado en la tabla
+            Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
+            UsuarioView uv = new UsuarioView((Frame) this.getParent(), true, usuario, null);
+            uv.setVisible(true);
+            txtbuscarusuarioKeyReleased(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Escriba en la opcion buscar y seleccione");
+        }
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void txtbuscarusuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarusuarioKeyReleased
@@ -185,25 +191,39 @@ try{
         //en la linea de codigo dos creamos el objeto usuariodao es donde esta nuestra funcion de eliminar 
         //en la sentencia if ponemos la variable y a la vez traemos de usuario dao la funcion de eliminar y 
         //ponemos la variable del objeto q en este caso es usuario nos pregunta si a sido eliminado o no 
-       try {
-        UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
-        Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
-        UsuarioDao usuariodao = new UsuarioDao();
-        int valor = JOptionPane.showConfirmDialog(this, "Desea Eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
-        if (valor == JOptionPane.YES_OPTION) {
-            if (usuariodao.eliminarUsuario(usuario)) {
-                JOptionPane.showMessageDialog(null, "Ha sido eliminado");
-            } else if (valor == JOptionPane.NO_OPTION) {
-                dispose();
+        try {
+            UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
+            Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
+            UsuarioDao usuariodao = new UsuarioDao();
+            int valor = JOptionPane.showConfirmDialog(this, "Desea Eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
+            if (valor == JOptionPane.YES_OPTION) {
+                if (usuariodao.eliminarUsuario(usuario)) {
+                    JOptionPane.showMessageDialog(null, "Ha sido eliminado");
+                } else if (valor == JOptionPane.NO_OPTION) {
+                    dispose();
+
+                }
 
             }
-
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Escriba en la opcion buscar y seleccione");
         }
-       }catch(Exception e){
-        JOptionPane.showMessageDialog(null,"Escriba en la opcion buscar y seleccione");
-    }
 
     }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void tablausuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablausuariosMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            UsuarioTable usuariotable = (UsuarioTable) tablausuarios.getModel();
+            //elegir cual esta seleccionado en la tabla
+            Usuario usuario = usuariotable.getFilas().get(tablausuarios.getSelectedRow());
+            UsuarioView uv = new UsuarioView((Frame) this.getParent(), true, usuario, null);
+            uv.setVisible(true);
+            txtbuscarusuarioKeyReleased(null);
+        }
+
+
+    }//GEN-LAST:event_tablausuariosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

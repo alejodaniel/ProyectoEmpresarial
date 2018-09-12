@@ -86,7 +86,7 @@ public class UsuarioView extends javax.swing.JDialog {
         txtconfirmacion = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("USUARIO");
+        setTitle("EDITAR USUARIO");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
