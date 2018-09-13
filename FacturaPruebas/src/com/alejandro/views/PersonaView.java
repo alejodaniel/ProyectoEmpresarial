@@ -9,6 +9,7 @@ import com.alejandro.DAO.PersonaDao;
 import com.alejandro.dominio.Persona;
 import com.alejandro.ucc.Operacion;
 import com.alejandro.ucc.ValidarNumeros;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class PersonaView extends javax.swing.JDialog {
     public PersonaView(java.awt.Frame parent, boolean modal, Persona person) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/persona1.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(false);
 

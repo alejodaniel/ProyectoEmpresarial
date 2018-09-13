@@ -9,6 +9,7 @@ import com.alejandro.DAO.PersonaDao;
 import com.alejandro.DAO.UsuarioDao;
 import com.alejandro.dominio.Persona;
 import com.alejandro.dominio.Usuario;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,7 @@ public class UsuarioView extends javax.swing.JDialog {
     public UsuarioView(java.awt.Frame parent, boolean modal, Usuario user, Persona person) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/usuario2.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(false);
 

@@ -10,6 +10,7 @@ import com.alejandro.dominio.Persona;
 import com.alejandro.table.PersonaTable;
 import java.awt.Frame;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +25,7 @@ public class BuscarPersonaView extends javax.swing.JDialog {
     public BuscarPersonaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/buscar.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(false);
 

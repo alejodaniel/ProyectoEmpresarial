@@ -45,9 +45,13 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     String hora, segundos, minutos, ampm;
     Calendar calendario;
     Thread h1;
+      boolean activo = true;
+    int cont = 0;
+
 
     public Principal() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/menu.png")).getImage());
         h1 = new Thread(this);
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -72,9 +76,17 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     public void confirmarSalida() {
         int dato = JOptionPane.showConfirmDialog(this, "Esta seguro de cerrar la aplicacion?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (dato == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Gracias por usar la aplicacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            FacturaPruebas.limiteSegundos();
-            System.exit(0);
+            activo = false;
+//            JDialog(contador.setText("" + cont));
+
+//            try {
+//                //            FacturaPruebas.limiteSegundos();
+//                Thread.sleep(1000);
+//                JOptionPane.showMessageDialog(null, "Gracias por usar la aplicacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            System.exit(0);
         }
 
     }
@@ -84,6 +96,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         panell = new javax.swing.JPanel();
+        contador = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -114,15 +127,23 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENU PRINCIPAL");
 
+        contador.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+
         javax.swing.GroupLayout panellLayout = new javax.swing.GroupLayout(panell);
         panell.setLayout(panellLayout);
         panellLayout.setHorizontalGroup(
             panellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
+            .addGroup(panellLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(526, Short.MAX_VALUE))
         );
         panellLayout.setVerticalGroup(
             panellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(panellLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(521, Short.MAX_VALUE))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivos.png"))); // NOI18N
@@ -480,6 +501,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JLabel contador;
     private javax.swing.JMenuItem item1;
     private javax.swing.JMenuItem item10;
     private javax.swing.JMenuItem item11;
@@ -510,15 +532,30 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     @Override
     public void run() {
-        Thread ct = Thread.currentThread();
-        while (ct == h1) {
+           while (activo == true) {
+//            Thread ct = Thread.currentThread();
+//            while (ct == h1) {
             calcula();
             reloj.setText(hora + ":" + minutos + ":" + segundos + ":" + ampm);
             try {
-                Thread.sleep(1000);
+                h1.sleep(1000);
             } catch (InterruptedException e) {
+//                }
             }
         }
+        while (cont < 2) {
+            calcula();
+            reloj.setText(hora + ":" + minutos + ":" + segundos + ":" + ampm);
+
+            cont++;
+            contador.setText("" + cont);
+            try {
+                h1.sleep(1000);
+            } catch (InterruptedException e) {
+
+            }
+        }
+        System.exit(0);
     }
 
     private void calcula() {
