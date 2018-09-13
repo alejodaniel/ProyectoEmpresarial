@@ -10,7 +10,6 @@ import com.alejandro.DAO.UsuarioDao;
 import com.alejandro.dominio.Persona;
 import com.alejandro.dominio.Usuario;
 import javax.swing.JOptionPane;
-import sun.security.util.Password;
 
 /**
  *

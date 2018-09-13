@@ -8,6 +8,7 @@ package com.alejandro.views;
 import com.alejandro.DAO.PersonaDao;
 import com.alejandro.dominio.Persona;
 import com.alejandro.ucc.Operacion;
+import com.alejandro.ucc.ValidarNumeros;
 import javax.swing.JOptionPane;
 
 /**
@@ -96,6 +97,12 @@ public class PersonaView extends javax.swing.JDialog {
             }
         });
 
+        txttelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttelefonoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -169,7 +176,7 @@ public class PersonaView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean validarEntradas() {
-
+        ValidarNumeros validarnumeros = new ValidarNumeros();
         Operacion operacion = new Operacion();
         if (txtnombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene el campo nombre");
@@ -183,11 +190,17 @@ public class PersonaView extends javax.swing.JDialog {
         } else if (txtdireccion.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene el campo direccion");
             return false;
-        } else if (txttelefono.getText().equals("")) {
+        }   else if (txttelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene el campo telefono");
             return false;
-        } else if (txtcelular.getText().equals("")) {
+        } else if (!validarnumeros.validacion(txttelefono.getText())) {
+            JOptionPane.showMessageDialog(null, "Solo se permite numeros de siete digitos");
+            return false;
+        }   else if (txtcelular.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene el campo celular");
+            return false;
+        } else if (!validarnumeros.validacion(txtcelular.getText())) {
+            JOptionPane.showMessageDialog(null, "Solo se permite numeros de 10 digitos");
             return false;
         }
 
@@ -243,6 +256,10 @@ public class PersonaView extends javax.swing.JDialog {
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
+
+    private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefonoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
