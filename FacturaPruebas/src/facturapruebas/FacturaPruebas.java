@@ -18,18 +18,8 @@ public class FacturaPruebas {
 
         Principal p = new Principal();
         p.setVisible(true);
-        int segundos = 1;
-        for (segundos = 1; segundos <= 3; segundos++) {
-//            JOptionPane.showMessageDialog(null, segundos);
-            limiteSegundos();
+        
         }
     }
 
-    public static void limiteSegundos() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-
-        }
-    }
-}
+  

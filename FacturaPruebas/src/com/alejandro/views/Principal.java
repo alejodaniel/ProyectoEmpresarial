@@ -45,9 +45,8 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     String hora, segundos, minutos, ampm;
     Calendar calendario;
     Thread h1;
-      boolean activo = true;
+    boolean activo = true;
     int cont = 0;
-
 
     public Principal() {
         initComponents();
@@ -56,40 +55,32 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         h1.start();
-        cerrar();
+//        cerrar();
     }
 
-    public void cerrar() {
-        try {
-            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e) {
-                    confirmarSalida();
-                }
-            });
-            this.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void confirmarSalida() {
-        int dato = JOptionPane.showConfirmDialog(this, "Esta seguro de cerrar la aplicacion?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (dato == JOptionPane.YES_OPTION) {
-            activo = false;
-//            JDialog(contador.setText("" + cont));
-
-//            try {
-//                //            FacturaPruebas.limiteSegundos();
-//                Thread.sleep(1000);
-//                JOptionPane.showMessageDialog(null, "Gracias por usar la aplicacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            System.exit(0);
-        }
-
-    }
+//    public void cerrar() {
+//        try {
+//            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//            addWindowListener(new WindowAdapter() {
+//                public void windowClosing(WindowEvent e) {
+//                    confirmarSalida();
+//                }
+//            });
+//            this.setVisible(true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void confirmarSalida() {
+//        int dato = JOptionPane.showConfirmDialog(this, "Esta seguro de cerrar la aplicacion?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+//        if (dato == JOptionPane.YES_OPTION) {
+//            activo = false;
+////            contador.setText("" + cont);
+//
+//        }
+//
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -124,8 +115,13 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenu8 = new javax.swing.JMenu();
         reloj = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("MENU PRINCIPAL");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         contador.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
@@ -134,16 +130,16 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         panellLayout.setHorizontalGroup(
             panellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panellLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addGap(304, 304, 304)
+                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         panellLayout.setVerticalGroup(
             panellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panellLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivos.png"))); // NOI18N
@@ -154,6 +150,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenu3.setText("PERSONA");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarpersona.png"))); // NOI18N
         jMenuItem1.setText("NUEVA PERSONA");
@@ -164,6 +161,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu3.add(jMenuItem1);
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         jMenuItem3.setText("EDITAR PERSONA");
@@ -180,6 +178,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenu4.setText("USUARIO");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editarusuario.png"))); // NOI18N
         jMenuItem2.setText("EDITAR USUARIO");
@@ -192,6 +191,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1.add(jMenu4);
 
+        Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         Salir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
         Salir.setText("SALIR");
@@ -215,7 +215,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenu5.setText("TEMAS");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        item1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
         item1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item1.setText("BLACK EYE");
         item1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +226,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item1);
 
+        item2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK));
         item2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item2.setText("BLACK MOON");
         item2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +237,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item2);
 
+        item3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK));
         item3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item3.setText("BLUE ICE");
         item3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +248,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item3);
 
+        item4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         item4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item4.setText("BLUE MOON");
         item4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +259,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item4);
 
+        item5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.ALT_MASK));
         item5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item5.setText("BLUE STEEL");
         item5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +270,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item5);
 
+        item7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, java.awt.event.InputEvent.ALT_MASK));
         item7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item7.setText("GREEN DREAM");
         item7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +281,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item7);
 
+        item8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, java.awt.event.InputEvent.ALT_MASK));
         item8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item8.setText("MAUVE METALLIC");
         item8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,7 +292,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item8);
 
+        item9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, java.awt.event.InputEvent.ALT_MASK));
         item9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item9.setText("ORANGE METALLIC");
         item9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +303,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item9);
 
+        item10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.ALT_MASK));
         item10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item10.setText("SILVER MOON");
         item10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +314,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item10);
 
+        item11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F10, java.awt.event.InputEvent.ALT_MASK));
         item11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item11.setText("SIMPLE 2D");
         item11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +325,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item11);
 
+        item12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, java.awt.event.InputEvent.ALT_MASK));
         item12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item12.setText("SKY METALLIC");
         item12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +336,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(item12);
 
+        item13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.ALT_MASK));
         item13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        item13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tema.png"))); // NOI18N
         item13.setText("WHITE VISION");
         item13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,7 +387,8 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        confirmarSalida();
+        TiiempoCierre tc = new TiiempoCierre(null, true);
+        tc.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
 
     private void item13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item13ActionPerformed
@@ -499,6 +524,11 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_item1ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        TiiempoCierre tc = new TiiempoCierre(this, true);
+        tc.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Salir;
     private javax.swing.JLabel contador;
@@ -532,9 +562,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     @Override
     public void run() {
-           while (activo == true) {
-//            Thread ct = Thread.currentThread();
-//            while (ct == h1) {
+        while (activo == true) {
             calcula();
             reloj.setText(hora + ":" + minutos + ":" + segundos + ":" + ampm);
             try {
@@ -543,20 +571,21 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 //                }
             }
         }
-        while (cont < 2) {
-            calcula();
-            reloj.setText(hora + ":" + minutos + ":" + segundos + ":" + ampm);
-
-            cont++;
-            contador.setText("" + cont);
-            try {
-                h1.sleep(1000);
-            } catch (InterruptedException e) {
-
-            }
-        }
-        System.exit(0);
     }
+//        while (cont < 2) {
+//            calcula();
+//            reloj.setText(hora + ":" + minutos + ":" + segundos + ":" + ampm);
+//
+//            cont++;
+//            contador.setText("" + cont);
+//            try {
+//                h1.sleep(1000);
+//            } catch (InterruptedException e) {
+//
+//            }
+//        }
+//        System.exit(0);
+//    }
 
     private void calcula() {
         Calendar calendario = new GregorianCalendar();
